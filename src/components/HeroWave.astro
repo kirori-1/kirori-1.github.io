@@ -1,0 +1,54 @@
+---
+// src/components/HeroWave.astro
+---
+
+<div
+  class="relative h-[480px] w-full overflow-hidden bg-gradient-to-b from-sky-100 to-pink-100"
+>
+  <div id="p5-container" class="absolute inset-0 z-0"></div>
+
+  <div
+    class="relative z-10 flex flex-col justify-center items-center h-full text-center px-4"
+  >
+
+    <p class="text-lg mt-2 text-gray-700">プログラマー / 録音師 / ギタリスト</p>
+    <a
+      href="/projects"
+      class="mt-6 px-6 py-3 rounded-xl bg-accent text-white text-base font-semibold shadow-md transition-all hover:bg-pink-600 hover:scale-105 hover:shadow-lg"
+    >
+      作品を見る 🎸
+    </a>
+  </div>
+</div>
+
+<!-- 加载 p5.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js" defer
+></script>
+
+<!-- 初始化 p5 动画 -->
+<script defer>
+  window.addEventListener("DOMContentLoaded", () => {
+    new p5((p) => {
+      p.setup = () => {
+        const canvas = p.createCanvas(window.innerWidth, 480);
+        canvas.parent("p5-container");
+      };
+      p.draw = () => {
+        p.clear();
+        p.stroke(255, 192, 203, 100); // 柔粉线条
+        p.noFill();
+        p.strokeWeight(2);
+        p.beginShape();
+        for (let x = 0; x < p.width; x += 10) {
+          const y =
+            p.height / 2 + Math.sin(p.frameCount * 0.05 + x * 0.01) * 30;
+          p.vertex(x, y);
+        }
+        p.endShape();
+      };
+      p.windowResized = () => {
+        p.resizeCanvas(window.innerWidth, 480);
+      };
+    });
+  });
+</script>

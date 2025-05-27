@@ -1,0 +1,29 @@
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><slot name="title" /></title>
+    <link rel="stylesheet" href="/styles/global.css" />
+  </head>
+  <body class="min-h-screen">
+    <header class="p-4 border-b">
+      <nav class="flex justify-between items-center">
+        <h1 class="text-xl font-bold"><a href="/">Kirori</a></h1>
+        <ul class="flex gap-4 text-base">
+          <li><a href="/about">About</a></li>
+          <li><a href="/projects">Projects</a></li>
+          <li><a href="/music">Music</a></li>
+          <li><a href="/studio">Studio</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer class="p-4 border-t text-center text-sm">
+      <p>&copy; 2025 Kirori. All rights reserved.</p>
+    </footer>
+  </body>
+</html>

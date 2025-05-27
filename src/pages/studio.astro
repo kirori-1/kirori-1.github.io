@@ -1,0 +1,32 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <h1>🎧 録音と調律</h1>
+      <p>以下のサービスを提供しています：</p>
+      <ul>
+        <li>ギターの調律（標準・特殊）</li>
+        <li>宅録・編集・整音</li>
+        <li>ミックス・マスタリング</li>
+      </ul>
+      <h2>使用機材</h2>
+      <ul>
+        <li>IF: Focusrite Scarlett 2i2</li>
+        <li>DAW: Ableton Live / Logic Pro</li>
+        <li>Mic: AT2035</li>
+      </ul>
+    </main>
+    <Footer />
+  </body>
+</html>

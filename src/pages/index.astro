@@ -2,68 +2,122 @@
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import HeroWave from "../components/HeroWave.astro";
 ---
 
-<!doctype html>
-<html lang="zh-CN">
+<html lang="ja">
   <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-    <style>
-      body {
-        background: #f4f4f4;
-        font-family: "Arial", sans-serif;
-        margin: 0;
-        padding: 0;
-      }
-      main {
-        max-width: 600px;
-        margin: 0 auto;
-        padding: 20px;
-        text-align: center;
-      }
-      .profile {
-        margin-bottom: 20px;
-      }
-      .profile img {
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-      }
-      .links {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-      }
-      .link-card {
-        background: #fff;
-        padding: 15px;
-        border-radius: 10px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        text-decoration: none;
-        color: #333;
-        transition: transform 0.2s;
-      }
-      .link-card:hover {
-        transform: translateY(-5px);
-      }
-    </style>
+    <BaseHead title="Kirori's Website" description="音楽と技術が交差する場所" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles/global.css" />
   </head>
-  <body>
+  <body class="font-sans bg-background text-primary">
     <Header />
-    <main>
-      <div class="profile">
-        <img src="/profile.jpg" alt="Kirori" />
-        <h1>Kirori</h1>
-        <p>前端开发者 | 技术爱好者</p>
-      </div>
-      <div class="links">
-        <a href="/blog" class="link-card">📚 博客</a>
-        <a href="/projects" class="link-card">💻 项目</a>
-        <a href="https://github.com/kirori" class="link-card">🐙 GitHub</a>
-        <a href="mailto:kirori@example.com" class="link-card">📧 联系我</a>
-      </div>
+    <main class="max-w-4xl mx-auto px-4 sm:px-6">
+      <!-- Profile Section -->
+      <section class="text-center my-12">
+        <div class="profile mb-6">
+          <!-- Avatar -->
+          <div class="relative mx-auto w-36 h-36 rounded-full bg-accent p-1.5">
+            <img
+              src="/profile.jpg"
+              alt="Kirori"
+              class="w-full h-full object-cover rounded-full border-4 border-white shadow-md"
+            />
+          </div>
+          <h1 class="text-3xl font-bold mt-4">Kirori</h1>
+          <p class="text-gray-600 mt-1">
+            🎵🎸🎧👨‍💻 Tokyo-based Programmer & Music Creator
+          </p>
+        </div>
+
+        <!-- HeroWave Section -->
+        <HeroWave />
+
+        <!-- Introduction Text -->
+        <p class="mt-6 text-lg leading-relaxed text-gray-700">
+          您好！我是一名程序员，同时也是吉他手、录音师、调音师和混音作者。<br />
+          在这个网站中，我将向您展示我的音乐作品、技术项目以及录音棚的相关活动。
+        </p>
+      </section>
+
+      <!-- Canvas Section (Centered) -->
+      <section class="flex justify-center mt-12">
+        <canvas
+          id="defaultCanvas0"
+          class="p5Canvas"
+          style="width: 100%; height: auto;"
+          width="2484"
+          height="960"></canvas>
+      </section>
+
+      <!-- Links Section (Grid Layout) -->
+      <section class="grid gap-6 sm:grid-cols-2 md:grid-cols-3 mt-12">
+        <a href="/projects" class="link-card"> 🧑‍💻 技術プロジェクト </a>
+        <a href="/music" class="link-card"> 🎸 音楽作品 </a>
+        <a href="/studio" class="link-card"> 🎧 録音と調律 </a>
+        <a href="/blog" class="link-card"> 📚 ブログ </a>
+        <a href="/contact" class="link-card"> 📬 連絡先 </a>
+      </section>
+
+      <!-- Weather Section -->
+      <section class="text-center mt-10 text-sm text-gray-500">
+        <div id="weather">Tokyo の天気情報を取得中…</div>
+      </section>
     </main>
     <Footer />
+
+    <!-- Weather Script -->
+    <script>
+      fetch(
+        `https://api.openweathermap.org/data/2.5/weather?q=Tokyo&appid=c73e40879c12ab0f31c98fc6253a5ec4&units=metric`
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          document.getElementById("weather").innerText =
+            `東京の現在気温: ${data.main.temp}°C`;
+        })
+        .catch(() => {
+          document.getElementById("weather").innerText =
+            "天気情報の取得に失敗しました。";
+        });
+    </script>
   </body>
 </html>
+
+<style>
+  /* 样式增加在 Astro 页面内 */
+  .link-card {
+    @apply bg-white p-6 rounded-xl shadow-md hover:shadow-lg text-center transition-all;
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-decoration: none;
+    color: theme("colors.primary");
+  }
+
+  .link-card:hover {
+    @apply bg-pink-100 text-accent scale-105;
+  }
+
+  body {
+    @apply bg-gradient-to-b from-sky-200 to-pink-300 text-primary font-sans;
+  }
+
+  /* 居中canvas */
+  #defaultCanvas0 {
+    display: block;
+    margin: 0 auto;
+  }
+
+  /* 增加更柔和的卡片动画效果 */
+  .link-card {
+    transition: all 0.3s ease;
+  }
+
+  .link-card:hover {
+    @apply bg-pink-200 text-accent scale-105 transform;
+  }
+</style>

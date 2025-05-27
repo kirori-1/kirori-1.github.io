@@ -1,10 +1,18 @@
 {
-    "editor.formatOnSave": true,
-    "editor.defaultFormatter": null,
-    "files.associations": {
-        "*.mdx": "markdown"
-    },
-    "[javascript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    }
-} 
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": null,
+  "files.associations": {
+    "*.mdx": "markdown"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[plaintext]": {
+    "editor.wrappingIndent": "none",
+    "editor.autoIndent": "none",
+    "editor.wordWrap": "bounded"
+  }
+}

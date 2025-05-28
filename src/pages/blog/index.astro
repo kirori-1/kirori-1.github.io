@@ -9,32 +9,154 @@ import FormattedDate from "../../components/FormattedDate.astro";
 const posts = (await getCollection("blog")).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
+
+// 获取文章摘要
+function getExcerpt(content: string, maxLength = 150) {
+  if (!content) return "";
+  const excerpt = content.slice(0, maxLength);
+  return excerpt.length < content.length ? `${excerpt}...` : excerpt;
+}
+
+// 默认图片列表，用于没有特色图片的文章
+const placeholderImages = [
+  "/blog-placeholder-1.jpg",
+  "/blog-placeholder-2.jpg",
+  "/blog-placeholder-3.jpg",
+  "/blog-placeholder-4.jpg",
+  "/blog-placeholder-5.jpg",
+];
+
+// 为每篇文章分配一个图片
+const postsWithImages = posts.map((post, index) => {
+  const imageIndex = index % placeholderImages.length;
+  return {
+    ...post,
+    image: post.data.heroImage || placeholderImages[imageIndex],
+  };
+});
 ---
 
 <!doctype html>
 <html lang="zh-CN">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
-  <body>
+  <body class="font-sans bg-gradient-to-b from-sky-200 to-pink-300">
     <Header />
-    <main>
-      <h1>📚 博客</h1>
-      <ul>
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
+      <div class="text-center mb-12">
+        <h1 class="text-4xl font-bold text-primary mb-4">📚 博客</h1>
+        <p class="text-gray-700 max-w-2xl mx-auto">
+          探索音响技术、编程和音乐创作的世界。这里记录了我的学习笔记、项目经验和专业见解。
+        </p>
+        
+        <!-- 简单的波浪动画装饰 -->
+        <div class="wave-decoration my-6 h-12 overflow-hidden relative">
+          <div class="wave absolute w-full h-full"></div>
+        </div>
+      </div>
+
+      <!-- 分类导航 -->
+      <div class="flex justify-center mb-8 flex-wrap gap-2">
+        <a href="#" class="category-pill active">全部</a>
+        <a href="#" class="category-pill">音响技术</a>
+        <a href="#" class="category-pill">编程</a>
+        <a href="#" class="category-pill">音乐创作</a>
+      </div>
+
+      <!-- 博客文章卡片网格 -->
+      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
         {
-          posts.map((post) => (
-            <li>
-              <a href={`/blog/${post.id}/`}>
-                <h2>{post.data.title}</h2>
-                <p>
+          postsWithImages.map((post) => (
+            <a href={`/blog/${post.id}/`} class="blog-card group">
+              <div class="blog-card-image">
+                <img src={post.image} alt={post.data.title} />
+              </div>
+              <div class="blog-card-content">
+                <p class="text-sm text-accent mb-2">
                   <FormattedDate date={post.data.pubDate} />
                 </p>
-              </a>
-            </li>
+                <h2 class="text-xl font-bold text-primary group-hover:text-accent transition-colors">
+                  {post.data.title}
+                </h2>
+                {post.data.description && (
+                  <p class="text-gray-600 mt-2 text-sm line-clamp-2">
+                    {post.data.description}
+                  </p>
+                )}
+              </div>
+            </a>
           ))
         }
-      </ul>
+      </div>
     </main>
     <Footer />
   </body>
 </html>
+
+<style>
+  /* 博客卡片样式 */
+  .blog-card {
+    @apply bg-white rounded-xl shadow-md overflow-hidden transition-all hover:shadow-lg hover:scale-[1.02];
+    display: flex;
+    flex-direction: column;
+  }
+
+  .blog-card-image {
+    @apply relative overflow-hidden h-48;
+  }
+
+  .blog-card-image img {
+    @apply w-full h-full object-cover transition-transform duration-500;
+  }
+
+  .blog-card:hover .blog-card-image img {
+    @apply scale-110;
+  }
+
+  .blog-card-content {
+    @apply p-5 flex-1 flex flex-col;
+  }
+
+  /* 分类导航样式 */
+  .category-pill {
+    @apply px-4 py-2 rounded-full text-sm font-medium transition-colors;
+    @apply bg-white text-gray-700 hover:bg-accent hover:text-white;
+  }
+
+  .category-pill.active {
+    @apply bg-accent text-white;
+  }
+
+  /* 波浪动画 */
+  .wave {
+    background: linear-gradient(to right, #ff9a9e, #fad0c4);
+    height: 100%;
+    width: 200%;
+    animation: wave 8s linear infinite;
+    mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1200 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0v46.29c47.79 22.2 103.59 32.17 158 28 70.36-5.37 136.33-33.31 206.8-37.5 73.84-4.36 147.54 16.88 218.2 35.26 69.27 18.17 138.3 24.88 209.4 13.08 36.15-6 69.85-17.84 104.45-29.34C989.49 25 1113-14.29 1200 52.47V0z' opacity='.25'/%3E%3Cpath d='M0 0v15.81c13 21.11 27.64 41.05 47.69 56.24C99.41 111.27 165 111 224.58 91.58c31.15-10.15 60.09-26.07 89.67-39.8 40.92-19 84.73-46 130.83-49.67 36.26-2.85 70.9 9.42 98.6 31.56 31.77 25.39 62.32 62 103.63 73 40.44 10.79 81.35-6.69 119.13-24.28s75.16-39 116.92-43.05c59.73-5.85 113.28 22.88 168.9 38.84 30.2 8.66 59 6.17 87.09-7.5 22.43-10.89 48-26.93 60.65-49.24V0z' opacity='.5'/%3E%3Cpath d='M0 0v5.63C149.93 59 314.09 71.32 475.83 42.57c43-7.64 84.23-20.12 127.61-26.46 59-8.63 112.48 12.24 165.56 35.4C827.93 77.22 886 95.24 951.2 90c86.53-7 172.46-45.71 248.8-84.81V0z'/%3E%3C/svg%3E");
+    mask-size: cover;
+    mask-repeat: no-repeat;
+  }
+
+  @keyframes wave {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* 文本截断 */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>

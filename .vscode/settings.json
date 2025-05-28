@@ -5,7 +5,7 @@
     "*.mdx": "markdown"
   },
   "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "hb432.prettier-eslint-typescript"
   },
   "[css]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"

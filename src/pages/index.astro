@@ -71,18 +71,21 @@ import HeroWave from "../components/HeroWave.astro";
     <Footer />
 
     <!-- Weather Script -->
-    <script>
+    <script lang="ts">
+      const weatherEl = document.getElementById("weather");
       fetch(
         `https://api.openweathermap.org/data/2.5/weather?q=Tokyo&appid=c73e40879c12ab0f31c98fc6253a5ec4&units=metric`
       )
         .then((res) => res.json())
         .then((data) => {
-          document.getElementById("weather").innerText =
-            `東京の現在気温: ${data.main.temp}°C`;
+          if (weatherEl) {
+            weatherEl.innerText = `東京の現在気温: ${data.main.temp}°C`;
+          }
         })
         .catch(() => {
-          document.getElementById("weather").innerText =
-            "天気情報の取得に失敗しました。";
+          if (weatherEl) {
+            weatherEl.innerText = "天気情報の取得に失敗しました。";
+          }
         });
     </script>
   </body>

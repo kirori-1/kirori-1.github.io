@@ -12,9 +12,10 @@ module.exports = {
         accent: "#2337ff",
         accentDark: "#000d8a",
         background: "#ffffff",
-        gray: "rgb(96,115,159)",
-        grayLight: "rgb(229,233,240)",
-        grayDark: "rgb(34,41,57)",
+        customGray: "rgb(96,115,159)",
+        customGrayLight: "rgb(229,233,240)",
+        customGrayDark: "rgb(34,41,57)",
+        gray: colors.gray
       },
       boxShadow: {
         default:

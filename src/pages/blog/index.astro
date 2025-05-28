@@ -50,10 +50,10 @@ const postsWithImages = posts.map((post, index) => {
     <main class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
       <div class="text-center mb-12">
         <h1 class="text-4xl font-bold text-primary mb-4">📚 博客</h1>
-        <p class="text-gray-700 max-w-2xl mx-auto">
+        <p class="text-gray-800 max-w-2xl mx-auto">
           探索音响技术、编程和音乐创作的世界。这里记录了我的学习笔记、项目经验和专业见解。
         </p>
-        
+
         <!-- 简单的波浪动画装饰 -->
         <div class="wave-decoration my-6 h-12 overflow-hidden relative">
           <div class="wave absolute w-full h-full"></div>
@@ -62,10 +62,19 @@ const postsWithImages = posts.map((post, index) => {
 
       <!-- 分类导航 -->
       <div class="flex justify-center mb-8 flex-wrap gap-2">
-        <a href="#" class="category-pill active">全部</a>
-        <a href="#" class="category-pill">音响技术</a>
-        <a href="#" class="category-pill">编程</a>
-        <a href="#" class="category-pill">音乐创作</a>
+        <a
+          href="#"
+          class="category-pill hover:bg-accent hover:text-white active">全部</a
+        >
+        <a href="#" class="category-pill hover:bg-accent hover:text-white"
+          >音响技术</a
+        >
+        <a href="#" class="category-pill hover:bg-accent hover:text-white"
+          >编程</a
+        >
+        <a href="#" class="category-pill hover:bg-accent hover:text-white"
+          >音乐创作</a
+        >
       </div>
 
       <!-- 博客文章卡片网格 -->
@@ -84,7 +93,7 @@ const postsWithImages = posts.map((post, index) => {
                   {post.data.title}
                 </h2>
                 {post.data.description && (
-                  <p class="text-gray-600 mt-2 text-sm line-clamp-2">
+                  <p class="text-gray-800 mt-2 text-sm line-clamp-2">
                     {post.data.description}
                   </p>
                 )}
@@ -122,10 +131,9 @@ const postsWithImages = posts.map((post, index) => {
     @apply p-5 flex-1 flex flex-col;
   }
 
-  /* 分类导航样式 */
   .category-pill {
     @apply px-4 py-2 rounded-full text-sm font-medium transition-colors;
-    @apply bg-white text-gray-700 hover:bg-accent hover:text-white;
+    @apply bg-white text-gray-800;
   }
 
   .category-pill.active {

@@ -13,20 +13,67 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
   <body>
     <Header />
     <main>
-      <h1>🎧 録音と調律</h1>
-      <p>以下のサービスを提供しています：</p>
-      <ul>
-        <li>ギターの調律（標準・特殊）</li>
-        <li>宅録・編集・整音</li>
-        <li>ミックス・マスタリング</li>
-      </ul>
-      <h2>使用機材</h2>
-      <ul>
-        <li>IF: Focusrite Scarlett 2i2</li>
-        <li>DAW: Ableton Live / Logic Pro</li>
-        <li>Mic: AT2035</li>
-      </ul>
+      <div class="space-y-4 text-gray-800">
+        <section>
+          <h2 class="text-lg font-bold">🎵 提供サービス</h2>
+          <ul class="list-disc list-inside">
+            <li>ギターの調律（標準・特殊）</li>
+            <li>宅録・編集・整音</li>
+            <li>ミックス・マスタリング</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-lg font-bold">🛠 使用機材一覧</h2>
+          <table class="table-auto border border-gray-300 mt-2">
+            <thead>
+              <tr class="bg-gray-100">
+                <th class="border px-4 py-2">カテゴリ</th>
+                <th class="border px-4 py-2">製品名</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                ><td class="border px-4 py-2">オーディオIF</td><td
+                  class="border px-4 py-2">Scarlett 2i2 / FLOW 8</td
+                ></tr
+              >
+              <tr
+                ><td class="border px-4 py-2">マイク</td><td
+                  class="border px-4 py-2">AT2035 / SM58S</td
+                ></tr
+              >
+              <tr
+                ><td class="border px-4 py-2">ギター</td><td
+                  class="border px-4 py-2">Fender Japan ST-STD</td
+                ></tr
+              >
+              <tr
+                ><td class="border px-4 py-2">エフェクター</td><td
+                  class="border px-4 py-2">Ampero 2</td
+                ></tr
+              >
+              <tr
+                ><td class="border px-4 py-2">電子ピアノ</td><td
+                  class="border px-4 py-2">YAMAHA NP-12</td
+                ></tr
+              >
+              <tr
+                ><td class="border px-4 py-2">MIDIキーボード</td><td
+                  class="border px-4 py-2">KORG microKEY Air</td
+                ></tr
+              >
+              <tr
+                ><td class="border px-4 py-2">DAW</td><td
+                  class="border px-4 py-2"
+                  >Ableton / Logic / Studio One / Pro Tools / Cubase / FL Studio</td
+                ></tr
+              >
+            </tbody>
+          </table>
+        </section>
+      </div>
+      <Footer />
     </main>
-    <Footer />
   </body>
 </html>

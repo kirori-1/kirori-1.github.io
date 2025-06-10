@@ -2,12 +2,12 @@
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import HeroWave from "../components/Card.astro";
+import HeroWave from "../components/HeroWave.astro";
 import Layout from "../components/Layout.astro";
 import Card from "../components/Card.astro";
 ---
 
-<Layout>
+<Layout title="主页面" description="这是主页" image="/logo.png">
   <!-- Hero Section -->
   <section class="text-center my-16 px-6">
     <h1 class="text-5xl font-bold tracking-tight text-gray-900 dark:text-white">
@@ -88,6 +88,7 @@ import Card from "../components/Card.astro";
   <section class="text-center mt-10 text-sm text-gray-500 dark:text-gray-400">
     <div id="weather">Tokyo の天気情報を取得中…</div>
   </section>
+  <slot />
 </Layout>
 
 <!-- Weather Script -->

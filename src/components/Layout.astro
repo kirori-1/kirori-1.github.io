@@ -1,19 +1,29 @@
 ---
-const { children } = Astro.props;
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import BaseHead from "../components/BaseHead.astro";
+
+interface LayoutProps {
+  title: string;
+  description: string;
+  image?: string;
+  children: unknown;
+}
+
+const { children, title, description, image } = Astro.props as LayoutProps;
 ---
 
-<!-- src/layouts/Layout.astro -->
 <html lang="zh">
   <head>
+    <BaseHead title={title} description={description} image={image} />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Wang Jiaqi / Kirori</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
   <body class="bg-white dark:bg-zinc-950 text-black dark:text-white font-sans">
+    <Header />
     <main>{children}</main>
-    <footer class="text-center text-sm text-gray-500 py-8">
-      © {new Date().getFullYear()} Kirori · All rights reserved.
-    </footer>
+    <Footer />
   </body>
 </html>

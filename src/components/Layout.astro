@@ -7,10 +7,8 @@ interface LayoutProps {
   title: string;
   description: string;
   image?: string;
-  children: unknown;
 }
-
-const { children, title, description, image } = Astro.props as LayoutProps;
+const { title, description, image } = Astro.props;
 ---
 
 <html lang="zh">
@@ -23,7 +21,9 @@ const { children, title, description, image } = Astro.props as LayoutProps;
   </head>
   <body class="bg-white dark:bg-zinc-950 text-black dark:text-white font-sans">
     <Header />
-    <main>{children}</main>
+    <main>
+      <slot />
+    </main>
     <Footer />
   </body>
 </html>

@@ -56,7 +56,9 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
         このページでは、私の経歴やスキル、興味について紹介します。
       </p>
       <div class="threejs-container">
-        <canvas id="threejs-canvas"></canvas>
+        <canvas
+          id="threejs-canvas"
+          class="w-full max-w-3xl h-[400px] mx-auto block"></canvas>
       </div>
       <p>
         プログラミングと音楽制作の両方に情熱を持ち、技術とアートの融合を追求しています。
@@ -65,7 +67,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
     </main>
     <Footer />
     <script>
-import * as THREE from "three";
+      import * as THREE from "three";
       // Three.js 动画
       const canvas = document.getElementById("threejs-canvas");
       if (!(canvas instanceof HTMLCanvasElement)) {
@@ -82,15 +84,17 @@ import * as THREE from "three";
         renderer.setSize(canvas.clientWidth, canvas.clientHeight);
 
         // 添加一个立方体
+        const geometry2 = new THREE.SphereGeometry(100, 100, 100);
         const geometry = new THREE.BoxGeometry();
         const material = new THREE.MeshBasicMaterial({
-          color: 0x00ff00,
-          wireframe: true,
+          color: 0x80ffff,
+          wireframe: false,
         });
         const cube = new THREE.Mesh(geometry, material);
-        scene.add(cube);
+        const cube2 = new THREE.Mesh(geometry2, material);
+        scene.add(cube,cube2);
 
-        camera.position.z = 5;
+        camera.position.z = 3;
 
         // 动画循环
         const animate = () => {

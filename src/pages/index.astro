@@ -108,26 +108,50 @@ const sortedPosts = allPosts
     <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
       <div class="group">
         <Card
-          title="哲学笔记"
+          title="哲学学习"
           link="/philosophy"
-          desc="以思辨方式书写日常与反思。"
+          desc="哲学思考、思辨文章与理论学习笔记。"
           icon="🤔"
         />
       </div>
       <div class="group">
         <Card
-          title="声音工程记录"
-          link="/sound"
-          desc="舞台音响与录音协助项目笔记。"
+          title="剧本创作"
+          link="/scriptwriting"
+          desc="剧本写作、创作技巧与故事创作实践。"
+          icon="📝"
+        />
+      </div>
+      <div class="group">
+        <Card
+          title="音响技术"
+          link="/audio"
+          desc="舞台音响、录音工程与音频技术笔记。"
           icon="🎵"
         />
       </div>
       <div class="group">
         <Card
-          title="开发项目"
-          link="/projects"
-          desc="个人开发作品，涉及音频、前端、AI 辅助等。"
+          title="编程开发"
+          link="/programming"
+          desc="前端开发、后端技术与工具使用经验。"
           icon="💻"
+        />
+      </div>
+      <div class="group">
+        <Card
+          title="WordPress"
+          link="/wordpress"
+          desc="WordPress 部署、优化与安全技术分享。"
+          icon="🌐"
+        />
+      </div>
+      <div class="group">
+        <Card
+          title="工具文档"
+          link="/tools"
+          desc="开发工具、文档系统与 Markdown 使用指南。"
+          icon="📚"
         />
       </div>
     </div>
@@ -244,26 +268,33 @@ const sortedPosts = allPosts
       </div>
     </div>
 
-    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
-      <a href="/projects" class="quick-link-card group">
-        <div class="quick-link-icon">🧑‍💻</div>
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-6">
+      <a href="/philosophy" class="quick-link-card group">
+        <div class="quick-link-icon">🤔</div>
         <div class="quick-link-content">
-          <h3>技术项目</h3>
-          <p>技術プロジェクト</p>
+          <h3>哲学学习</h3>
+          <p>哲学と学習</p>
         </div>
       </a>
-      <a href="/music" class="quick-link-card group">
-        <div class="quick-link-icon">🎸</div>
+      <a href="/scriptwriting" class="quick-link-card group">
+        <div class="quick-link-icon">📝</div>
         <div class="quick-link-content">
-          <h3>音乐作品</h3>
-          <p>音楽作品</p>
+          <h3>剧本创作</h3>
+          <p>脚本創作</p>
         </div>
       </a>
-      <a href="/studio" class="quick-link-card group">
-        <div class="quick-link-icon">🎧</div>
+      <a href="/audio" class="quick-link-card group">
+        <div class="quick-link-icon">🎵</div>
         <div class="quick-link-content">
-          <h3>录音调律</h3>
-          <p>録音と調律</p>
+          <h3>音响技术</h3>
+          <p>音響技術</p>
+        </div>
+      </a>
+      <a href="/programming" class="quick-link-card group">
+        <div class="quick-link-icon">💻</div>
+        <div class="quick-link-content">
+          <h3>编程开发</h3>
+          <p>プログラミング</p>
         </div>
       </a>
       <a href="/blog" class="quick-link-card group">

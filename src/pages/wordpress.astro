@@ -1,0 +1,259 @@
+---
+import Layout from "../components/Layout.astro";
+import { getCollection } from "astro:content";
+import { categories, getCategoryById } from "../config/categories";
+
+// 获取WordPress相关的博客文章
+const allPosts = await getCollection("blog");
+const wordpressCategory = getCategoryById("wordpress");
+const wordpressPosts = allPosts
+  .filter((post) => {
+    const postTags = (post.data as any).tags || [];
+    return postTags.some((tag: string) =>
+      wordpressCategory?.tags.includes(tag)
+    );
+  })
+  .sort(
+    (a, b) =>
+      new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
+  )
+  .slice(0, 6);
+---
+
+<Layout
+  title="WordPress"
+  description="WordPress 部署、优化与安全技术分享"
+  image="/logo.png"
+>
+  <!-- Hero Section -->
+  <section
+    class="relative py-20 bg-gradient-to-br from-orange-50 via-red-50 to-pink-50 dark:from-orange-950 dark:via-red-900 dark:to-pink-900"
+  >
+    <div
+      class="absolute inset-0 bg-gradient-to-r from-orange-600/10 via-red-600/10 to-pink-600/10"
+    >
+    </div>
+    <div class="relative max-w-4xl mx-auto px-6 text-center">
+      <div
+        class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-orange-500 to-red-600 rounded-2xl mb-6 shadow-lg"
+      >
+        <span class="text-3xl">🌐</span>
+      </div>
+      <h1
+        class="text-5xl font-bold mb-6 bg-gradient-to-r from-orange-900 via-red-600 to-pink-600 dark:from-orange-100 dark:via-red-400 dark:to-pink-400 bg-clip-text text-transparent"
+      >
+        WordPress
+      </h1>
+      <p
+        class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed"
+      >
+        从部署到优化，从安全到性能，全面掌握 WordPress 网站建设与管理技术。
+      </p>
+      <div
+        class="w-24 h-1 bg-gradient-to-r from-orange-500 to-red-500 mx-auto rounded-full mt-6"
+      >
+      </div>
+    </div>
+  </section>
+
+  <!-- WordPress Overview -->
+  <section class="py-16 bg-white dark:bg-zinc-900">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4 text-gray-900 dark:text-white">
+          技术领域
+        </h2>
+        <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+          从基础部署到高级优化，掌握 WordPress 全栈开发技能。
+        </p>
+      </div>
+
+      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div
+          class="group bg-gradient-to-br from-orange-50 to-red-50 dark:from-orange-900/20 dark:to-red-900/20 p-8 rounded-2xl border border-orange-100 dark:border-orange-800 hover:shadow-xl transition-all duration-300"
+        >
+          <div class="text-4xl mb-4">🚀</div>
+          <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">
+            部署运维
+          </h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            AWS、阿里云等云平台部署，服务器配置与运维管理。
+          </p>
+        </div>
+
+        <div
+          class="group bg-gradient-to-br from-red-50 to-pink-50 dark:from-red-900/20 dark:to-pink-900/20 p-8 rounded-2xl border border-red-100 dark:border-red-800 hover:shadow-xl transition-all duration-300"
+        >
+          <div class="text-4xl mb-4">⚡</div>
+          <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">
+            性能优化
+          </h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            数据库优化、缓存配置、CDN 加速等性能提升技术。
+          </p>
+        </div>
+
+        <div
+          class="group bg-gradient-to-br from-pink-50 to-purple-50 dark:from-pink-900/20 dark:to-purple-900/20 p-8 rounded-2xl border border-pink-100 dark:border-pink-800 hover:shadow-xl transition-all duration-300"
+        >
+          <div class="text-4xl mb-4">🔒</div>
+          <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">
+            安全加固
+          </h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            网站安全防护、漏洞修复、访问控制等安全技术。
+          </p>
+        </div>
+
+        <div
+          class="group bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-purple-900/20 dark:to-indigo-900/20 p-8 rounded-2xl border border-purple-100 dark:border-purple-800 hover:shadow-xl transition-all duration-300"
+        >
+          <div class="text-4xl mb-4">🔧</div>
+          <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">
+            插件开发
+          </h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            自定义插件开发、主题定制、功能扩展等开发技术。
+          </p>
+        </div>
+
+        <div
+          class="group bg-gradient-to-br from-indigo-50 to-blue-50 dark:from-indigo-900/20 dark:to-blue-900/20 p-8 rounded-2xl border border-indigo-100 dark:border-indigo-800 hover:shadow-xl transition-all duration-300"
+        >
+          <div class="text-4xl mb-4">💾</div>
+          <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">
+            数据管理
+          </h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            数据库备份、恢复、迁移等数据管理最佳实践。
+          </p>
+        </div>
+
+        <div
+          class="group bg-gradient-to-br from-blue-50 to-green-50 dark:from-blue-900/20 dark:to-green-900/20 p-8 rounded-2xl border border-blue-100 dark:border-blue-800 hover:shadow-xl transition-all duration-300"
+        >
+          <div class="text-4xl mb-4">🔄</div>
+          <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">
+            CI/CD
+          </h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            自动化部署、版本控制、持续集成等 DevOps 实践。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Blog Posts -->
+  {
+    wordpressPosts.length > 0 && (
+      <section class="py-16 bg-gradient-to-br from-zinc-50 to-orange-50 dark:from-zinc-900 dark:to-orange-900">
+        <div class="max-w-6xl mx-auto px-6">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold mb-4 bg-gradient-to-r from-orange-900 via-red-600 to-pink-600 dark:from-orange-100 dark:via-red-400 dark:to-pink-400 bg-clip-text text-transparent">
+              相关文章
+            </h2>
+            <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+              探索 WordPress 相关的博客文章，深入了解网站建设的技术实践。
+            </p>
+            <div class="w-24 h-1 bg-gradient-to-r from-orange-500 to-red-500 mx-auto rounded-full mt-4" />
+          </div>
+
+          <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {wordpressPosts.map((post) => (
+              <article class="group bg-white dark:bg-zinc-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 dark:border-zinc-700">
+                <div class="h-48 bg-gradient-to-br from-orange-400 to-red-500 relative overflow-hidden">
+                  <div class="absolute inset-0 bg-black bg-opacity-20" />
+                  <div class="absolute bottom-4 left-4 text-white">
+                    <span class="text-sm opacity-90">
+                      {new Date(post.data.pubDate).toLocaleDateString("zh-CN")}
+                    </span>
+                  </div>
+                </div>
+                <div class="p-6">
+                  <h3 class="text-xl font-bold mb-3 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors line-clamp-2">
+                    {post.data.title}
+                  </h3>
+                  {post.data.description && (
+                    <p class="text-gray-600 dark:text-gray-400 text-sm line-clamp-3 mb-4">
+                      {post.data.description}
+                    </p>
+                  )}
+                  <a
+                    href={`/blog/${post.id}`}
+                    class="inline-flex items-center text-orange-600 dark:text-orange-400 font-medium hover:text-orange-800 dark:hover:text-orange-300 transition-colors"
+                  >
+                    阅读文章
+                    <svg
+                      class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M13 7l5 5m0 0l-5 5m5-5H6"
+                      />
+                    </svg>
+                  </a>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <div class="text-center mt-8">
+            <a
+              href="/blog?category=wordpress"
+              class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-orange-600 to-red-600 text-white rounded-2xl hover:from-orange-700 hover:to-red-700 transition-all duration-300 shadow-lg hover:shadow-xl"
+            >
+              查看更多WordPress文章
+              <svg
+                class="w-5 h-5 ml-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 7l5 5m0 0l-5 5m5-5H6"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <!-- WordPress Quote -->
+  <section class="py-16 bg-gradient-to-r from-orange-600 to-red-600">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <blockquote
+        class="text-2xl md:text-3xl font-medium text-white leading-relaxed mb-6"
+      >
+        "WordPress 让内容创作变得简单，但优秀的网站需要技术和艺术的结合。"
+      </blockquote>
+      <p class="text-orange-100 text-lg">— WordPress 开发感悟</p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>

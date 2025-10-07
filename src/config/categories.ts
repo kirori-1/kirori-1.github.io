@@ -90,6 +90,22 @@ export const categories: Category[] = [
     color: "orange",
     tags: ["Markdown", "文档", "教程", "前端", "工具", "MDX"],
   },
+  {
+    id: "philosophy",
+    name: "哲学学习",
+    description: "哲学思考、思辨文章、理论学习等",
+    icon: "🤔",
+    color: "indigo",
+    tags: ["哲学", "思辨", "理论", "思考", "学习", "智慧"],
+  },
+  {
+    id: "creative",
+    name: "剧本创作",
+    description: "剧本写作、创作技巧、故事创作等",
+    icon: "📝",
+    color: "pink",
+    tags: ["剧本", "写作", "创作", "故事", "编剧", "文学", "艺术"],
+  },
 ];
 
 export function getCategoryById(id: string): Category | undefined {

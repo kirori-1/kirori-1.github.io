@@ -1,7 +1,16 @@
 ---
 title: "第二章：系统构成与信号流程"
-description: ""
+description: "介绍音响系统的基本构成、信号流程和各组件的作用"
 pubDate: 2024-05-27
+updatedDate: 2024-05-27
+lang: zh-CN
+tags:
+  - 音响技术
+  - 系统架构
+  - 信号流程
+  - 音频工程
+  - 技术教程
+draft: false
 ---
 # 第二章：系统构成与信号流程
 

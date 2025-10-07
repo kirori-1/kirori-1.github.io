@@ -31,7 +31,8 @@
 }
 
 body {
-  font-family: "Atkinson", sans-serif;
+  font-family: "Atkinson", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
   margin: 0;
   padding: 0;
   text-align: left;
@@ -40,8 +41,11 @@ body {
   word-wrap: break-word;
   overflow-wrap: break-word;
   color: rgb(var(--gray-dark));
-  font-size: 20px;
-  line-height: 1.7;
+  font-size: 18px;
+  line-height: 1.8;
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 main {
@@ -57,29 +61,40 @@ h3,
 h4,
 h5,
 h6 {
-  margin: 0 0 0.5rem 0;
+  margin: 0 0 1rem 0;
   color: rgb(var(--black));
-  line-height: 1.2;
+  line-height: 1.3;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
 }
 
 h1 {
   font-size: 3.052em;
+  font-weight: 800;
+  letter-spacing: -0.05em;
 }
 
 h2 {
   font-size: 2.441em;
+  font-weight: 700;
+  letter-spacing: -0.03em;
 }
 
 h3 {
   font-size: 1.953em;
+  font-weight: 600;
+  letter-spacing: -0.025em;
 }
 
 h4 {
   font-size: 1.563em;
+  font-weight: 600;
 }
 
 h5 {
   font-size: 1.25em;
+  font-weight: 600;
 }
 
 strong,
@@ -96,11 +111,44 @@ a:hover {
 }
 
 p {
-  margin-bottom: 1em;
+  margin-bottom: 1.5em;
+  line-height: 1.8;
 }
 
 .prose p {
   margin-bottom: 2em;
+  line-height: 1.8;
+}
+
+/* Enhanced prose styling */
+.prose {
+  max-width: 65ch;
+  margin: 0 auto;
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  scroll-margin-top: 2rem;
+}
+
+.prose h1:first-child,
+.prose h2:first-child,
+.prose h3:first-child {
+  margin-top: 0;
+}
+
+.prose p:first-child {
+  margin-top: 0;
+}
+
+.prose p:last-child {
+  margin-bottom: 0;
 }
 
 textarea,
@@ -168,7 +216,6 @@ hr {
   clip-path: inset(50%);
   white-space: nowrap;
 }
-
 
 @layer utilities {
   @keyframes fade-in-up {

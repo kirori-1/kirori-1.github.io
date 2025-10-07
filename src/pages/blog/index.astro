@@ -45,39 +45,51 @@ const postsWithImages = posts.map((post, index) => {
       rel="stylesheet"
     />
   </head>
-  <body class="font-sans bg-gradient-to-b from-sky-200 to-pink-300">
+  <body
+    class="font-sans bg-gradient-to-br from-zinc-50 via-blue-50 to-purple-50 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-800 min-h-screen"
+  >
     <Header />
     <main class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
-      <div class="text-center mb-12">
-        <h1 class="text-4xl font-bold text-primary mb-4">📚 博客</h1>
-        <p class="max-w-2xl mx-auto">
+      <div class="text-center mb-16">
+        <div
+          class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl mb-6 shadow-lg"
+        >
+          <span class="text-3xl">📚</span>
+        </div>
+        <h1
+          class="text-5xl font-bold mb-6 bg-gradient-to-r from-zinc-900 via-blue-600 to-purple-600 dark:from-white dark:via-blue-400 dark:to-purple-400 bg-clip-text text-transparent"
+        >
+          博客
+        </h1>
+        <p
+          class="max-w-3xl mx-auto text-xl text-gray-600 dark:text-gray-400 leading-relaxed"
+        >
           探索音响技术、编程和音乐创作的世界。这里记录了我的学习笔记、项目经验和专业见解。
         </p>
 
-        <!-- 简单的波浪动画装饰 -->
-        <div class="wave-decoration my-6 h-12 overflow-hidden relative">
+        <!-- Enhanced wave decoration -->
+        <div class="wave-decoration my-8 h-16 overflow-hidden relative">
           <div class="wave absolute w-full h-full"></div>
         </div>
       </div>
 
-      <!-- 分类导航 -->
-      <div class="flex justify-center mb-8 flex-wrap gap-2">
-        <a
-          href="#"
-          class="category-pill hover:bg-accent hover:text-white active">全部</a
-        >
-        <a href="#" class="category-pill hover:bg-accent hover:text-white"
-          >音响技术</a
-        >
-        <a href="#" class="category-pill hover:bg-accent hover:text-white"
-          >编程</a
-        >
-        <a href="#" class="category-pill hover:bg-accent hover:text-white"
-          >音乐创作</a
-        >
-        <a href="#" class="category-pill hover:bg-accent hover:text-white"
-          >哲学</a
-        >
+      <!-- Category Navigation -->
+      <div class="flex justify-center mb-12 flex-wrap gap-3">
+        <a href="#" class="category-pill active">
+          <span class="mr-2">📋</span>全部
+        </a>
+        <a href="#" class="category-pill">
+          <span class="mr-2">🎵</span>音响技术
+        </a>
+        <a href="#" class="category-pill">
+          <span class="mr-2">💻</span>编程
+        </a>
+        <a href="#" class="category-pill">
+          <span class="mr-2">🎸</span>音乐创作
+        </a>
+        <a href="#" class="category-pill">
+          <span class="mr-2">🤔</span>哲学
+        </a>
       </div>
 
       <!-- 博客文章卡片网格 -->
@@ -135,12 +147,16 @@ const postsWithImages = posts.map((post, index) => {
   }
 
   .category-pill {
-    @apply px-4 py-2 rounded-full text-sm font-medium transition-colors;
-    @apply bg-white text-gray-800;
+    @apply px-6 py-3 rounded-full text-sm font-medium transition-all duration-300;
+    @apply bg-white dark:bg-zinc-800 text-gray-700 dark:text-gray-300;
+    @apply border border-gray-200 dark:border-zinc-700;
+    @apply hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:border-blue-300 dark:hover:border-blue-600;
+    @apply hover:scale-105 hover:shadow-md;
+    text-decoration: none;
   }
 
   .category-pill.active {
-    @apply bg-accent text-white;
+    @apply bg-gradient-to-r from-blue-600 to-purple-600 text-white border-transparent shadow-lg;
   }
 
   /* 波浪动画 */
